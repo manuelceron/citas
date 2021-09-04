@@ -5,7 +5,7 @@ function conectaDB()
 
 //$mysqli = new mysqli('SERVIDOR','USUARIO','CONTRASEÑA_USUARIO','NOMBRE_BD');
 //require_once ("mysqli2.php");
-$mysqli = new mysqli('localhost','root','12345678','citas');
+$mysqli = new mysqli('localhost','root','','citas');
 
 //Valida la conexión si fue erronea
 if(mysqli_connect_errno()){
