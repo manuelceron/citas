@@ -23,7 +23,7 @@ class StripeController extends Controller
 
         $stripes = Stripe::all();
 
-        return view('modules.stripe.index', compact('stripes'));
+        return view('modules.stripes.index', compact('stripes'));
     }
 
     /**
@@ -33,7 +33,9 @@ class StripeController extends Controller
      */
     public function create()
     {
-        //
+        abort_if(Gate::denies('stripe_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return view('modules.stripes.create');
     }
 
     /**

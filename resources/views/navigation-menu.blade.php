@@ -17,21 +17,28 @@
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('stripe.index') }}" :active="request()->routeIs('stripe.index')">
+                    <x-jet-nav-link href="{{ route('stripes.index') }}" :active="request()->routeIs('stripe.index')">
                         {{ __('Stripe') }}
                     </x-jet-nav-link> 
                 </div>
-                @can('task_access')
+                @can('view_tasks')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('tasks.index') }}" :active="request()->routeIs('tasks.*')">
                         {{ __('Tasks') }}
                         </x-jet-nav-link>
                     </div>
                 @endcan
-                @can('user_access')
+                @can('view_users')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
-                        {{ __('Users') }}
+                            {{ __('Users') }}
+                        </x-jet-nav-link>
+                    </div>
+                @endcan
+                @can('view_roles')
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('roles.index') }}" :active="request()->routeIs('roles.*')">
+                        {{ __('Roles') }}
                         </x-jet-nav-link>
                     </div>
                 @endcan

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Authorizable;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\Role;
@@ -12,9 +13,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UsersController extends Controller
 {
+    use Authorizable;
+
     public function index()
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('view_users'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $users = User::with('roles')->get();
 
@@ -23,7 +26,7 @@ class UsersController extends Controller
 
     public function create()
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('add_users'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $roles = Role::pluck('title', 'id');
 
@@ -40,14 +43,14 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('view_users'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('modules.users.show', compact('user'));
     }
 
     public function edit(User $user)
     {
-        abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        //abort_if(Gate::denies('edit_users'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $roles = Role::pluck('title', 'id');
 
