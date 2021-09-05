@@ -709,5 +709,10 @@
     "Stripe": "Franja",
     "Lastname": "Apellido",
     "DNI": "Identificación",
-    "Zambia3": "Zambia3"
+    "Users": "Usuarios",
+    "Description": "Descripción",
+    "Add Task": "Agregar Tarea",
+    "Tasks List": "Lista de Tareas",
+    "Email Verified At": "Correo electrónico verificado en",
+    "Tasks": "Tareas"
 }

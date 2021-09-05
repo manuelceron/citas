@@ -16,8 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('stripe', '\App\Http\Controllers\StripeController');
-Route::resource('user', '\App\Http\Controllers\UserController');
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('tasks', \App\Http\Controllers\TasksController::class);
+
+    Route::resource('users', \App\Http\Controllers\UsersController::class);
+
+    Route::resource('stripe', \App\Http\Controllers\StripeController::class);
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

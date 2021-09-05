@@ -40,6 +40,7 @@ class CreateNewUser implements CreatesNewUsers
                 'email' => $input['email'],
                 'password' => Hash::make($input['password']),
             ]), function (User $user) {
+                $user->roles()->attach(2);
                 if (\Laravel\Jetstream\Jetstream::hasTeamFeatures()){
                     $this->createTeam($user);
                 }

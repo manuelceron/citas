@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStripeAdvisersTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateStripeAdvisersTable extends Migration
      */
     public function up()
     {
-        Schema::create('stripe_advisers', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('stripe_id')->references('id')->on('roles')->cascadeOnDelete();
-            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->string('state');
+            $table->string('title')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +28,6 @@ class CreateStripeAdvisersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stripe_advisers');
+        Schema::dropIfExists('roles');
     }
 }
