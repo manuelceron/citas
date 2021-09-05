@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+//use App\Http\Requests\StoreStripeRequest;
+//use App\Http\Requests\UpdateStripeRequest;
 use App\Models\Stripe;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Symfony\Component\HttpFoundation\Response;
+
 
 class StripeController extends Controller
 {
@@ -14,7 +19,11 @@ class StripeController extends Controller
      */
     public function index()
     {
-        return view('modules.stripe.index');
+        abort_if(Gate::denies('stripe_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $stripes = Stripe::all();
+
+        return view('modules.stripe.index', compact('stripes'));
     }
 
     /**

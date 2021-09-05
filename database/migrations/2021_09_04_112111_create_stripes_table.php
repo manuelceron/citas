@@ -15,10 +15,10 @@ class CreateStripesTable extends Migration
     {
         Schema::create('stripes', function (Blueprint $table) {
             $table->id();
-            $table->time('hora_inicio');
-            $table->time('hora_fin');
-            $table->date('fecha');
-            $table->string('grupo');
+            $table->time('start_time');
+            $table->time('end_time');
+            $table->date('date');
+            $table->string('group');
             $table->timestamps();
         });
     }
